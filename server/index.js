@@ -201,10 +201,17 @@ app.post('/api/scan', async (req, res) => {
     return res.status(400).json({ error: 'Food item(s) required' });
   }
 
-  const foodNames = Array.isArray(items) ? items.map(i => i.name || i).join(', ') : items.name;
-  
-  // Parse comma-separated food items
-  const foodList = foodNames.split(',').map(f => f.trim()).filter(Boolean);
+  // Extract food names from items array or single item
+  let foodList;
+  if (Array.isArray(items)) {
+    foodList = items.map(i => i.name || i).filter(Boolean);
+  } else if (items.name) {
+    foodList = [items.name];
+  } else if (typeof items === 'string') {
+    foodList = items.split(',').map(f => f.trim()).filter(Boolean);
+  } else {
+    foodList = [];
+  }
   
   // Look up each food in local database
   const results = [];
@@ -212,6 +219,7 @@ app.post('/api/scan', async (req, res) => {
     try {
       const food = localFoods.find(f => 
         f.name.toLowerCase() === foodName.toLowerCase() ||
+        f.name.toLowerCase().includes(foodName.toLowerCase()) ||
         (f.keywords && f.keywords.some(k => k.toLowerCase().includes(foodName.toLowerCase())))
       );
       
