@@ -9,6 +9,7 @@ import { ensureNotificationPermission } from '../utils/notifications'
 import { getGeminiKey, setGeminiKey } from '../utils/scanFood'
 import { ACTIVITY_LEVELS, caloriePlan, type ActivityLevel } from '../utils/calories'
 import { connectHealthDevice, deviceStepsAvailable } from '../utils/steps'
+import { autoCalculateTargets } from '../utils/nutritionEngine'
 
 const ACCENTS = [
   { name: 'Forest', value: '#17795c' },
@@ -72,6 +73,21 @@ export default function Profile() {
       : 0
   const bmiLabel =
     bmi <= 0 ? '—' : bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Healthy' : bmi < 30 ? 'Overweight' : 'Obese'
+
+  const autoCalc = () => {
+    const updatedProfile = {
+      ...profile,
+      age: Number(age) || 0,
+      heightCm: Number(height) || 0,
+      weightKg: Number(weight) || 0,
+      goal,
+    }
+    const targets = autoCalculateTargets(updatedProfile)
+    setCalorieTarget(String(targets.calorieTarget || 0))
+    setProteinTarget(String(targets.proteinTarget || 0))
+    setWaterTarget(String(targets.waterTarget || 0))
+    tapSoft()
+  }
 
   const saveInfo = () => {
     // Only clamp values the user actually typed — a blank field must stay
@@ -237,6 +253,12 @@ export default function Profile() {
               <input className={inputCls} type="number" value={waterTarget} onChange={(e) => setWaterTarget(e.target.value)} />
             </div>
           </div>
+          <button
+            onClick={autoCalc}
+            className="w-full py-2.5 rounded-xl border border-dashed border-border bg-transparent text-accent text-sm font-medium press hover:bg-accent/10 transition-colors"
+          >
+            ↻ Auto-calculate from profile data
+          </button>
         </Card>
 
         {/* Calorie coach + devices (full width) */}

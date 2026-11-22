@@ -12,6 +12,10 @@ import {
   User,
   UtensilsCrossed,
   type LucideIcon,
+  Layout as LayoutIcon,
+  List,
+  Scale as ScaleIcon,
+  BookOpen,
 } from 'lucide-react'
 import { useApp } from '../store/AppContext'
 import { LogoMark } from './LogoMark'
@@ -29,6 +33,12 @@ const NAV_ITEMS: NavItem[] = [
   { to: '/diary', label: 'Food Diary', icon: UtensilsCrossed },
   { to: '/search', label: 'Food Search', icon: Search },
   { to: '/scan', label: 'Scan Food', icon: ScanLine },
+  { to: '/barcode', label: 'Barcode', icon: LayoutIcon },
+  { to: '/workout', label: 'Workout', icon: Dumbbell },
+  { to: '/programs', label: 'Programs', icon: List },
+  { to: '/measurements', label: 'Measurements', icon: ScaleIcon },
+  { to: '/recipes', label: 'Recipes', icon: BookOpen },
+  { to: '/meal-planner', label: 'Meal Planner', icon: Salad },
   { to: '/diets', label: 'Diets', icon: Salad },
   { to: '/progress', label: 'Progress', icon: TrendingUp },
   { to: '/water', label: 'Water', icon: GlassWater },
@@ -90,7 +100,6 @@ function SidebarProfile() {
 export default function Layout() {
   const location = useLocation()
 
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [location.pathname])

@@ -11,6 +11,11 @@ import Water from './pages/Water'
 import Activity from './pages/Activity'
 import Weight from './pages/Weight'
 import Profile from './pages/Profile'
+import Workout from './pages/Workout'
+import Barcode from './pages/Barcode'
+import BodyMeasurements from './pages/BodyMeasurements'
+import Recipes from './pages/Recipes'
+import MealPlanner from './pages/MealPlanner'
 import { useApp } from './store/AppContext'
 
 function hexToRgba(hex: string, alpha: number): string {
@@ -43,6 +48,12 @@ export default function App() {
         <Route path="/diary" element={<Diary />} />
         <Route path="/search" element={<FoodSearch />} />
         <Route path="/scan" element={<Scan />} />
+        <Route path="/barcode" element={<Barcode />} />
+        <Route path="/workout" element={<Workout />} />
+        <Route path="/programs" element={<Workout />} />
+        <Route path="/measurements" element={<BodyMeasurements />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/meal-planner" element={<MealPlanner />} />
         <Route path="/diets" element={<Diets />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/water" element={<Water />} />

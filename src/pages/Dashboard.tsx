@@ -6,15 +6,18 @@ import {
   ArrowUpRight,
   BarChart3,
   Bike,
+  BookOpen,
   ChevronRight,
   Dumbbell,
   Droplets,
   Footprints,
   Flame,
   GlassWater,
+  Layout as LayoutIcon,
+  List,
   Plus,
   Salad,
-  Scale,
+  Scale as ScaleIcon,
   ScanLine,
   Target,
   UtensilsCrossed,
@@ -111,13 +114,17 @@ export default function Dashboard() {
   return (
     <div className="space-y-5">
       {/* Quick actions */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6">
         {[
           { to: '/search', label: 'Add Food', icon: Plus },
           { to: '/scan', label: 'Scan Food', icon: ScanLine },
-          { to: '/diets', label: 'Diets', icon: Salad },
+          { to: '/barcode', label: 'Barcode', icon: LayoutIcon },
+          { to: '/workout', label: 'Workout', icon: Dumbbell },
+          { to: '/programs', label: 'Programs', icon: List },
+          { to: '/measurements', label: 'Measurements', icon: ScaleIcon },
+          { to: '/recipes', label: 'Recipes', icon: BookOpen },
+          { to: '/meal-planner', label: 'Meal Planner', icon: Salad },
           { to: '/water', label: 'Log Water', icon: GlassWater },
-          { to: '/activity', label: 'Log Workout', icon: Dumbbell },
           { to: '/weight', label: 'Log Weight', icon: Scale },
         ].map(({ to, label, icon: Icon }) => (
           <Link

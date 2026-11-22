@@ -6,6 +6,7 @@ import { FoodImage } from '../components/FoodImage'
 import { useApp, uid } from '../store/AppContext'
 import { MEAL_TYPES, type Food, type MealType } from '../types'
 import { FOOD_CATEGORIES, FOODS, scaleMacros } from '../data/foods'
+import { EXTENDED_FOODS } from '../data/foodsExtended'
 import { fmtNum } from '../utils/nutrition'
 import { todayISO } from '../utils/date'
 import { getGeminiKey, getMacrosByName, hasGeminiKey, type AiFoodResult } from '../utils/scanFood'
@@ -37,7 +38,7 @@ export default function FoodSearch() {
   const [aiLogged, setAiLogged] = useState(false)
   const [aiSaved, setAiSaved] = useState(false)
 
-  const allFoods = useMemo(() => [...FOODS, ...customFoods], [customFoods])
+  const allFoods = useMemo(() => [...FOODS, ...EXTENDED_FOODS, ...customFoods], [customFoods])
   const categories = useMemo(() => {
     const extra = customFoods.map((f) => f.category).filter((c) => !FOOD_CATEGORIES.includes(c))
     return [...FOOD_CATEGORIES, ...Array.from(new Set(extra))]
