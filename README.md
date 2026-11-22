@@ -1,7 +1,7 @@
 # FITTRACK — Premium Fitness & Nutrition App
 
 A premium-looking, **frontend-only** fitness and nutrition tracking prototype.
-Dark premium theme with lime accent, built with React + TypeScript + Tailwind CSS.
+light premium theme with lime accent, built with React + TypeScript + Tailwind CSS.
 
 > All data is mock/in-memory — nothing persists after refresh, and there is no
 > backend, database, or API by design.
