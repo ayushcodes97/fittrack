@@ -27,3 +27,6 @@ dist-ssr
 server/.env
 *.env.local
 !.env.example
+
+# Server lock file
+server/package-lock.json
